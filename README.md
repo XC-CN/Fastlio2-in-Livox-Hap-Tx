@@ -11,12 +11,12 @@ https://blog.csdn.net/m0_55117804/article/details/142644882?fromshare=blogdetail
 3.【在Livox Hap HX上运行Fast-Lio2算法】
 https://blog.csdn.net/XC_R6S/article/details/143694164?spm=1001.2014.3001.5501
 
-可以直接先根据READEME操作，遇到问题再访问参考文档。
+**可以直接先根据READEME操作，遇到问题再访问参考文档。**
 
-默认已经安装好ubuntu20.04和ROS1
+默认已经安装好ubuntu20.04和ROS1，并将本仓库clone到一个文件夹。
 ## 1.编译Livox SDK2
 ```
-cd livox_ws/Livox-SDK2 
+cd livox_ws/src/Livox-SDK2 
 mkdir build  
 cd build  
 cmake ..  
@@ -32,7 +32,7 @@ sudo apt-get install build-essential
 ## 2.安装livox_ros_driver2
 先进入livox_ros_driver2所在的文件夹位置
 ```
-cd livox_ws/livox_ros_driver2
+cd livox_ws/src/livox_ros_driver2
 ```
 根据ROS的版本选择不同的输入指令。
 我的版本为Noetic，所以输入下列两行代码：
@@ -45,4 +45,20 @@ source /opt/ros/noetic/setup.sh
 详情查看参考文档1-- 四、Ubuntu连接激光雷达HAP
 确保连接成功并在RViz上有点云输出后再进行下一步
 
-## 4.运行fast_lio2
+## 4.部署fast_lio2
+在fast_lio2_ws文件夹中打开终端
+```
+source ../livox_ws/devel/setup.bash
+catkin_make
+source devel/setup.bash
+```
+
+## 5.运行代码
+```
+roslaunch livox_ros_driver2 msg_HAP.launch
+roslaunch fast_lio mapping_hap.launch
+```
+运行正常的结果：
+![image](https://github.com/user-attachments/assets/d431d089-6b56-406b-b788-040ff01a1ace)
+节点图：
+![image](https://github.com/user-attachments/assets/332dc964-c056-4b52-8719-dc58e0a97a5d)

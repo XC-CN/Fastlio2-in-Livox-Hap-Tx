@@ -1,0 +1,30 @@
+<launch>
+    <!-- Launch file for Livox HAP LiDAR -->
+ 
+    <!-- 是否启动 RViz 显示 -->
+    <arg name="rviz" default="true" />
+ 
+    <!-- 加载 HAP 的配置文件（确保配置文件已存在） -->
+    <rosparam command="load" file="$(find fast_lio)/config/hap.yaml" />
+ 
+    <!-- 设置参数值，可以根据实际需求调整 -->
+    <param name="feature_extract_enable" type="bool" value="0"/>
+    <param name="point_filter_num" type="int" value="3"/>
+    <param name="max_iteration" type="int" value="3" />
+    <param name="filter_size_surf" type="double" value="0.5" />
+    <param name="filter_size_map" type="double" value="0.5" />
+    <param name="cube_side_length" type="double" value="1000" />
+    <param name="runtime_pos_log_enable" type="bool" value="0" />
+ 
+    <!-- 启动 fast_lio 的激光雷达映射节点，确保该节点名称、包名和类型名称正确 -->
+    <node pkg="fast_lio" type="fastlio_mapping" name="fast_lio_mapping" output="screen">
+        <!-- 设置 LiDAR 数据的订阅话题 -->
+        <param name="lidar_topic" type="string" value="/livox/lidar" />
+    </node>
+ 
+    <!-- 可选：如果需要 RViz 可视化显示，则启动 RViz -->
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_lio)/rviz_cfg/loam_livox.rviz" />
+    </group>
+ 
+</launch>

@@ -1,0 +1,11 @@
+# Build directories
+build/
+devel/
+install/
+
+# Logs
+*.log
+
+# ROS specific files
+*.bag
+

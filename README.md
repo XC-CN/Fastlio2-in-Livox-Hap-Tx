@@ -29,7 +29,7 @@ source /opt/ros/noetic/setup.sh
 
 ## 3. 将雷达连接上Ubuntu / Connect the radar to Ubuntu
 
-详情查看参考文章：\\
+详情查看参考文章：\
 https://blog.csdn.net/weixin_61985044/article/details/132405044?ops_request_misc=&request_id=&biz_id=102&utm_term=livox%20hap%E4%BD%BF%E7%94%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-132405044.142%5Ev100%5Epc_search_result_base3&spm=1018.2226.3001.4187 
 确保连接成功并在RViz上有点云输出后再进行下一步 / Make sure the connection is successful and point cloud data is output on RViz before proceeding.
 

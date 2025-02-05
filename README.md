@@ -45,6 +45,9 @@ source devel/setup.bash
 ## 5. 运行代码 / Run the code
 ```bash
 roslaunch livox_ros_driver2 msg_HAP.launch
+```
+
+```bash
 roslaunch fast_lio mapping_hap.launch
 ```
 

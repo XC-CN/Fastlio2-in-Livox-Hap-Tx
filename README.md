@@ -38,7 +38,7 @@ https://blog.csdn.net/weixin_61985044/article/details/132405044?ops_request_misc
 在fast_lio2_ws文件夹中打开终端 / Open a terminal in the fast_lio2_ws folder.
 ```bash
 source ../livox_ws/devel/setup.bash
-catkin_make
+catkin_make -j$(nproc)
 source devel/setup.bash
 ```
 

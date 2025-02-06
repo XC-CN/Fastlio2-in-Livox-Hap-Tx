@@ -29,5 +29,5 @@ publish:
     scan_bodyframe_pub_en: true     # 发布点云（IMU 坐标系下）
  
 pcd_save:
-    pcd_save_en: false
-    interval: 10                    # 每10帧保存一次点云
+    pcd_save_en: true
+    interval: -1                  # 将所有点云保存为一个文件

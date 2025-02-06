@@ -1,6 +1,7 @@
 <launch>
-    <!-- Launch file for Livox HAP LiDAR -->
- 
+    <!-- 启动 livox_ros_driver2 的 msg_HAP.launch -->
+    <include file="$(find livox_ros_driver2)/launch_ROS1/msg_HAP.launch" />
+   
     <!-- 是否启动 RViz 显示 -->
     <arg name="rviz" default="true" />
  

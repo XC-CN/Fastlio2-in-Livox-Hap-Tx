@@ -6,7 +6,7 @@ cd livox_ws/src/Livox-SDK2
 mkdir build  
 cd build  
 cmake ..  
-make  
+make -j$(nproc)
 sudo make install  
 ```
 **如果在使用cmake时出现No CMAKE_CXX_COMPILER could be found.这样的错误，可以输入下列命令： / If you encounter the error "No CMAKE_CXX_COMPILER could be found." when running cmake, you can use the following command:**

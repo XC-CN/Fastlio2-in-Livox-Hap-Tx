@@ -44,13 +44,9 @@ source devel/setup.bash
 
 ## 5. 运行代码 / Run the code
 ```bash
-roslaunch livox_ros_driver2 msg_HAP.launch
-```
-在fast_lio_ws中打开另一个终端
-```bash
-source devel/setup.bash
 roslaunch fast_lio mapping_hap.launch
 ```
+
 
 **运行正常的结果 / Expected output if running successfully:**
 

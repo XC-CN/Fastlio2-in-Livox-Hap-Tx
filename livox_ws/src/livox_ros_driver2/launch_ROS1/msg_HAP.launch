@@ -1,37 +1,63 @@
 <launch>
 
 	<!--user configure parameters for ros start-->  
+	<!-- 设置LVX文件路径，默认为"livox_test.lvx" -->
 	<arg name="lvx_file_path" default="livox_test.lvx"/>
+	<!-- 设置雷达广播码列表，默认为"100000000000000" -->
 	<arg name="bd_list" default="100000000000000"/>
+	<!-- 设置传输格式，默认为1 -->
 	<arg name="xfer_format" default="1"/>
+	<!-- 是否使用多主题模式，默认为0（不使用） -->
 	<arg name="multi_topic" default="0"/>
+	<!-- 数据源设置，默认为0 -->
 	<arg name="data_src" default="0"/>
+	<!-- 发布频率设置，默认为10.0Hz -->
 	<arg name="publish_freq" default="10.0"/>
+	<!-- 输出数据类型，默认为0 -->
 	<arg name="output_type" default="0"/>
+	<!-- 是否启用RViz可视化，默认为false（不启用） -->
 	<arg name="rviz_enable" default="false"/>
+	<!-- 是否启用rosbag记录，默认为false（不启用） -->
 	<arg name="rosbag_enable" default="false"/>
+	<!-- 命令行参数，默认使用bd_list的值 -->
 	<arg name="cmdline_arg" default="$(arg bd_list)"/>
+	<!-- 消息帧ID，默认为"livox_frame" -->
 	<arg name="msg_frame_id" default="livox_frame"/>
+	<!-- 是否记录雷达数据到bag文件，默认为true -->
 	<arg name="lidar_bag" default="true"/>
+	<!-- 是否记录IMU数据到bag文件，默认为true -->
 	<arg name="imu_bag" default="true"/>
 	<!--user configure parameters for ros end--> 
 
+	<!-- 将传输格式参数传递给ROS系统 -->
 	<param name="xfer_format" value="$(arg xfer_format)"/>
+	<!-- 将多主题模式参数传递给ROS系统 -->
 	<param name="multi_topic" value="$(arg multi_topic)"/>
+	<!-- 将数据源参数传递给ROS系统 -->
 	<param name="data_src" value="$(arg data_src)"/>
+	<!-- 将发布频率参数传递给ROS系统 -->
 	<param name="publish_freq" type="double" value="$(arg publish_freq)"/>
+	<!-- 将输出数据类型参数传递给ROS系统 -->
 	<param name="output_data_type" value="$(arg output_type)"/>
+	<!-- 将雷达广播码列表参数传递给ROS系统 -->
 	<param name="cmdline_str" type="string" value="$(arg bd_list)"/>
+	<!-- 将LVX文件路径参数传递给ROS系统 -->
 	<param name="cmdline_file_path" type="string" value="$(arg lvx_file_path)"/>
+	<!-- 设置用户配置文件路径 -->
 	<param name="user_config_path" type="string" value="$(find livox_ros_driver2)/config/HAP_config.json"/>
+	<!-- 设置帧ID参数 -->
 	<param name="frame_id" type="string" value="$(arg msg_frame_id)"/>
+	<!-- 设置是否记录雷达数据到bag文件 -->
 	<param name="enable_lidar_bag" type="bool" value="$(arg lidar_bag)"/>
+	<!-- 设置是否记录IMU数据到bag文件 -->
 	<param name="enable_imu_bag" type="bool" value="$(arg imu_bag)"/>
 
+	<!-- 启动Livox雷达发布节点 -->
 	<node name="livox_lidar_publisher2" pkg="livox_ros_driver2"
 	      type="livox_ros_driver2_node" required="true"
 	      output="screen" args="$(arg cmdline_arg)"/>
 
+	<!-- 如果启用rosbag记录，则启动记录节点 -->
 	<group if="$(arg rosbag_enable)">
     	<node pkg="rosbag" type="record" name="record" output="screen"
           		args="-a"/>

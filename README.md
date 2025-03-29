@@ -1,6 +1,12 @@
-这是将Fastlio2算法部署在Livox Hap TX上的步骤，带有中文和英文翻译。
+这是将Fastlio2算法部署在Livox Hap TX上的步骤。
 
-## 1. 构建Livox SDK2 / Build Livox SDK2
+## 0. 创建工作空间
+在一个新文件夹下，假设为catkin_ws
+```bash
+git clone https://github.com/XC-CN/Fastlio2-in-Livox-Hap-Tx.git
+```
+
+## 1. 构建Livox SDK2 
 ```bash
 cd livox_ws/src/Livox-SDK2 
 mkdir build  
@@ -9,30 +15,53 @@ cmake ..
 make -j$(nproc)
 sudo make install  
 ```
-**如果在使用cmake时出现No CMAKE_CXX_COMPILER could be found.这样的错误，可以输入下列命令： / If you encounter the error "No CMAKE_CXX_COMPILER could be found." when running cmake, you can use the following command:**
+**如果在使用cmake时出现No CMAKE_CXX_COMPILER could be found.这样的错误，可以输入下列命令： 
 ```bash
 sudo apt-get install build-essential
 ```
-**然后重新运行上面的代码 / Then rerun the previous code.**
+**然后重新运行上面的代码**
 
-## 2. 安装livox_ros_driver2 / Install livox_ros_driver2
-先进入livox_ros_driver2所在的文件夹位置 / First, navigate to the folder where livox_ros_driver2 is located.
+## 2. 安装livox_ros_driver2
+先进入livox_ros_driver2所在的文件夹位置 
 ```bash
 cd livox_ws/src/livox_ros_driver2
 ```
-根据ROS的版本选择不同的输入指令 / Choose the appropriate command based on your ROS version.  
-我的版本为Noetic，所以输入下列两行代码 / My version is Noetic, so I use the following two commands:
+根据ROS的版本选择不同的输入指令 
+我的版本为Noetic，所以输入下列两行代码 
 ```bash
 source /opt/ros/noetic/setup.sh
 ./build.sh ROS1
 ```
 
-## 3. 将雷达连接上Ubuntu / Connect the radar to Ubuntu
+## 3. 将雷达连接上Ubuntu 
 
 详情查看参考文章：\
-https://blog.csdn.net/weixin_61985044/article/details/132405044?ops_request_misc=&request_id=&biz_id=102&utm_term=livox%20hap%E4%BD%BF%E7%94%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-132405044.142%5Ev100%5Epc_search_result_base3&spm=1018.2226.3001.4187 \
+ \
 **直接从文章的第四部分：四、Ubuntu连接激光雷达HAP 进行即可**\
-确保连接成功并在RViz上有点云输出后再进行下一步 / Make sure the connection is successful and point cloud data is output on RViz before proceeding.
+
+1.使用航插一分三线将雷达与电脑网口连接，并给雷达12V供电
+
+2.为Ubuntu设置静态IP
+
+- 在设置-网络-有线-齿轮按钮-IPV4
+
+- IPV4方式-手动
+
+- 地址设置为192.168.1.X，子网掩码255.255.255.0，网关192.168.1.1\
+其中X为雷达的地址，在我的代码中我设置地址为192.168.1.50
+
+- 点击应用并重启Ubuntu
+
+3.进行雷达连接情况测试
+
+进入livox_ros_driver2所在的文件夹
+```bash
+cd catkin_ws\Fastlio2-in-Livox-Hap-Tx\livox_ws\src\livox_ros_driver2
+source ../../devel/setup.sh
+roslaunch livox_ros_driver2 rviz_HAP.launch
+```
+
+此时应该可以看到RViz上有点云输出，确保连接成功后再进行下一步。
 
 ## 4. 部署Fast-LIO2 / Deploy Fast-LIO2
 在fast_lio2_ws文件夹中打开终端 / Open a terminal in the fast_lio2_ws folder.
@@ -57,3 +86,7 @@ roslaunch fast_lio mapping_hap.launch
 ![image](https://github.com/user-attachments/assets/332dc964-c056-4b52-8719-dc58e0a97a5d)
 
 这样，您就可以成功部署Fastlio2算法到Livox Hap TX上了 / With these steps, you can successfully deploy the Fastlio2 algorithm on the Livox Hap TX.
+
+## 参考文章
+- Livox HAP 一文搞定HAP激光雷达的连接和使用（详细版）\
+https://blog.csdn.net/weixin_61985044/article/details/132405044?fromshare=blogdetail&sharetype=blogdetail&sharerId=132405044&sharerefer=PC&sharesource=XC_R6S&sharefrom=from_link

@@ -15,11 +15,7 @@ cmake ..
 make -j$(nproc)
 sudo make install  
 ```
-**如果在使用cmake时出现No CMAKE_CXX_COMPILER could be found.这样的错误，可以输入下列命令： 
-```bash
-sudo apt-get install build-essential
-```
-**然后重新运行上面的代码**
+
 
 ## 2. 安装livox_ros_driver2
 先进入livox_ros_driver2所在的文件夹位置 

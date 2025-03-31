@@ -48,7 +48,7 @@ source /opt/ros/noetic/setup.bash
 
 进入livox_ros_driver2所在的文件夹
 ```bash
-cd catkin_ws\Fastlio2-in-Livox-Hap-Tx\livox_ws\src\livox_ros_driver2
+cd livox_ws\src\livox_ros_driver2
 source ../../devel/setup.sh
 roslaunch livox_ros_driver2 rviz_HAP.launch
 ```
@@ -59,31 +59,67 @@ roslaunch livox_ros_driver2 rviz_HAP.launch
 ![雷达连接示意图](images/lidar_connect.png)
 
 
-## 4. 部署Fast-LIO2 / Deploy Fast-LIO2
-在fast_lio2_ws文件夹中打开终端 / Open a terminal in the fast_lio2_ws folder.
+## 4. 部署Fast-LIO2 
+在fast_lio2_ws文件夹中打开终端
 ```bash
+cd fast_lio2_ws
 source ../livox_ws/devel/setup.bash
 catkin_make -j$(nproc)
 source devel/setup.bash
 ```
 
-## 5. 运行代码 / Run the code
+## 5. 运行代码
 ```bash
 roslaunch fast_lio mapping_hap.launch
 ```
 
-由于在hap.yaml配置文件中（Fastlio2-in-Livox-Hap-Tx\fast_lio2_ws\src\FAST_LIO\config\hap.yaml），我已经设置为将建图结果保存为pcd点云，会默认保存在工作空间的根目录。
+由于在hap.yaml配置文件中（Fastlio2-in-Livox-Hap-Tx\fast_lio2_ws\src\FAST_LIO\config\hap.yaml），我已经设置为将建图结果保存为pcd点云，会默认保存在fast_lio2_ws\src\FAST_LIO\PCD。
 
-
-**运行正常的结果 / Expected output if running successfully:**
+**运行正常的结果**
 
 ![image](https://github.com/user-attachments/assets/d431d089-6b56-406b-b788-040ff01a1ace)
 
-**节点图 / Node graph:**
+**节点图:**
 
 ![image](https://github.com/user-attachments/assets/332dc964-c056-4b52-8719-dc58e0a97a5d)
 
 这样，您就可以成功部署Fastlio2算法到Livox Hap TX上了
+
+## 大致项目结构
+```tree
+└─Fastlio2-in-Livox-Hap-Tx
+    ├─fast_lio2_ws
+    │  └─src
+    │      └─FAST_LIO
+    │          ├─.github
+    │          ├─config
+    │          ├─doc
+    │          ├─include
+    │          │  ├─ikd-Tree
+    │          │  └─IKFoM_toolkit
+    │          ├─launch
+    │          ├─Log
+    │          ├─msg
+    │          ├─PCD
+    │          ├─rviz_cfg
+    │          └─src
+    ├─images
+    └─livox_ws
+        └─src
+            ├─Livox-SDK2
+            │  ├─3rdparty
+            │  ├─include
+            │  ├─samples
+            │  └─sdk_core
+            └─livox_ros_driver2
+                ├─3rdparty
+                ├─cmake
+                ├─config
+                ├─launch_ROS1
+                ├─launch_ROS2
+                ├─msg
+                └─src
+```
 
 ## 参考文章
 - Livox HAP 一文搞定HAP激光雷达的连接和使用（详细版）\

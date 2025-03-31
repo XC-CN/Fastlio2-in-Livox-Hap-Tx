@@ -35,11 +35,7 @@ source /opt/ros/noetic/setup.sh
 
 ## 3. 将雷达连接上Ubuntu 
 
-详情查看参考文章：\
- \
-**直接从文章的第四部分：四、Ubuntu连接激光雷达HAP 进行即可**\
-
-1.使用航插一分三线将雷达与电脑网口连接，并给雷达12V供电
+1.使用航插一分三线将雷达与电脑网口连接，并给雷达供电（需要12V）
 
 2.为Ubuntu设置静态IP
 
@@ -62,6 +58,10 @@ roslaunch livox_ros_driver2 rviz_HAP.launch
 ```
 
 此时应该可以看到RViz上有点云输出，确保连接成功后再进行下一步。
+
+效果如图：
+![雷达连接示意图](images/lidar_connect.png)
+
 
 ## 4. 部署Fast-LIO2 / Deploy Fast-LIO2
 在fast_lio2_ws文件夹中打开终端 / Open a terminal in the fast_lio2_ws folder.

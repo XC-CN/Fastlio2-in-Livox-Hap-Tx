@@ -1,4 +1,4 @@
-这是将Fastlio2算法部署在Livox Hap TX上的步骤。
+# 将Fastlio2算法部署在Livox Hap TX上
 
 ## 0. 创建工作空间
 在一个新文件夹下，假设为catkin_ws
@@ -25,7 +25,7 @@ cd livox_ws/src/livox_ros_driver2
 根据ROS的版本选择不同的输入指令 
 我的版本为Noetic，所以输入下列两行代码 
 ```bash
-source /opt/ros/noetic/setup.sh
+source /opt/ros/noetic/setup.bash
 ./build.sh ROS1
 ```
 
@@ -72,6 +72,8 @@ source devel/setup.bash
 roslaunch fast_lio mapping_hap.launch
 ```
 
+由于在hap.yaml配置文件中（Fastlio2-in-Livox-Hap-Tx\fast_lio2_ws\src\FAST_LIO\config\hap.yaml），我已经设置为将建图结果保存为pcd点云，会默认保存在工作空间的根目录。
+
 
 **运行正常的结果 / Expected output if running successfully:**
 
@@ -81,7 +83,7 @@ roslaunch fast_lio mapping_hap.launch
 
 ![image](https://github.com/user-attachments/assets/332dc964-c056-4b52-8719-dc58e0a97a5d)
 
-这样，您就可以成功部署Fastlio2算法到Livox Hap TX上了 / With these steps, you can successfully deploy the Fastlio2 algorithm on the Livox Hap TX.
+这样，您就可以成功部署Fastlio2算法到Livox Hap TX上了
 
 ## 参考文章
 - Livox HAP 一文搞定HAP激光雷达的连接和使用（详细版）\

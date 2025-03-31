@@ -30,4 +30,4 @@ publish:
  
 pcd_save:
     pcd_save_en: true
-    interval: -1                  # 将所有点云保存为一个文件
+    interval: -1                  # -1表示将所有点云保存为一个文件
